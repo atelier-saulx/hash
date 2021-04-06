@@ -1,11 +1,5 @@
 import test from 'ava'
-import {
-  hash,
-  hashCompact,
-  hashObject,
-  hashObjectIgnoreKeyOrder,
-} from '../src'
-
+import { hash, hashCompact, hashObject, hashObjectIgnoreKeyOrder } from '../src'
 
 test('hash', async t => {
   const a = { x: true }
@@ -17,7 +11,6 @@ test('hash', async t => {
   }
   t.true(hash(bla) > 0)
 })
-
 
 test('hash stress', async t => {
   const a = {}
@@ -1183,7 +1176,6 @@ test('hash test equality 7', async t => {
   t.true(hashA1 !== hashB1)
   t.true(hashA !== hashB)
 })
-
 
 test('hash fixed length', async t => {
   const texts = []

@@ -1,22 +1,36 @@
 import stringHash from './stringHash'
 
-const hashObjectNest = (obj: object | any[], hash = 5381): number => {
+const hashObjectNest = (
+  obj: object | any[],
+  hash = 5381,
+  hash2 = 52711
+): [number, number] => {
   if (obj.constructor === Array) {
     for (let i = 0; i < obj.length; i++) {
       const field = obj[i]
       const type = typeof field
       if (type === 'string') {
-        hash = stringHash(i + ':' + field, hash)
+        const f = i + ':' + field
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       } else if (type === 'number') {
-        hash = stringHash(i + 'n:' + field, hash)
+        const f = i + 'n:' + field
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       } else if (type === 'object') {
         if (field === null) {
-          hash = stringHash(i + 'v:' + 'null', hash)
+          const f = i + 'v:' + 'null'
+          hash = stringHash(f, hash)
+          hash2 = stringHash(f, hash2)
         } else {
-          hash = stringHash(i + 'o:', hashObjectNest(field, hash))
+          const x = hashObjectNest(field, hash, hash2)
+          hash = stringHash(i + 'o:', x[0])
+          hash2 = stringHash(i + 'o:', x[1])
         }
       } else if (type === 'boolean') {
-        hash = stringHash(i + 'b:' + (field ? 'true' : 'false'), hash)
+        const f = i + 'b:' + (field ? 'true' : 'false')
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       }
     }
   } else {
@@ -24,21 +38,31 @@ const hashObjectNest = (obj: object | any[], hash = 5381): number => {
       const field = obj[key]
       const type = typeof field
       if (type === 'string') {
-        hash = stringHash(key + ':' + field, hash)
+        const f = key + ':' + field
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       } else if (type === 'number') {
-        hash = stringHash(key + 'n:' + field, hash)
+        const f = key + 'n:' + field
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       } else if (type === 'object') {
         if (field === null) {
-          hash = stringHash(key + 'v:' + 'null', hash)
+          const f = key + 'v:' + 'null'
+          hash = stringHash(f, hash)
+          hash2 = stringHash(f, hash2)
         } else {
-          hash = stringHash(key + 'o:', hashObjectNest(field, hash))
+          const x = hashObjectNest(field, hash, hash2)
+          hash = stringHash(key + 'o:', x[0])
+          hash2 = stringHash(key + 'o:', x[1])
         }
       } else if (type === 'boolean') {
-        hash = stringHash(key + 'b:' + (field ? 'true' : 'false'), hash)
+        const f = key + 'b:' + (field ? 'true' : 'false')
+        hash = stringHash(f, hash)
+        hash2 = stringHash(f, hash2)
       }
     }
   }
-  return hash
+  return [hash, hash2]
 }
 
 export default hashObjectNest
