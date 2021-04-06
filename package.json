@@ -1,7 +1,7 @@
 {
   "name": "@saulx/hash",
   "main": "./dist/index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -37,9 +37,6 @@
   "prettier": "@saulx/prettier-config",
   "eslintConfig": {
     "extends": "@saulx/eslint-config"
-  },
-  "dependencies": {
-    "is-plain-obj": "^3.0.0"
   },
   "devDependencies": {
     "@saulx/eslint-config": "https://github.com/atelier-saulx/eslint-config",
