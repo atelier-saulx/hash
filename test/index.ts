@@ -1215,3 +1215,27 @@ test('hash fixed length', async t => {
     t.is(blurp.length, 10)
   }
 })
+
+test('hash fixed length ignore key order', async t => {
+  const a = hashCompact(
+    {
+      x: 1,
+      y: 2,
+      z: 'flapper'
+    },
+    10,
+    true
+  )
+
+  const b = hashCompact(
+    {
+      z: 'flapper',
+      x: 1,
+      y: 2
+    },
+    10,
+    true
+  )
+
+  t.is(a, b)
+})

@@ -1,6 +1,7 @@
 import hash from './hash'
 import stringHash from './stringHash'
 import hashObject from './hashObject'
+import { hashObjectIgnoreKeyOrder } from '.'
 
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
@@ -15,7 +16,11 @@ const toString = (hash: number): string => {
   return result
 }
 
-const hashCompact = (val: any, size?: number): string => {
+const hashCompact = (
+  val: any,
+  size?: number,
+  ignoreKeyOrder?: boolean
+): string => {
   let result: number
   if (typeof val === 'object') {
     if (val === null) {
@@ -25,7 +30,13 @@ const hashCompact = (val: any, size?: number): string => {
         let str = ''
         const arraySize = val.length
         for (let i = 0; i < arraySize; i++) {
-          str += toString(hash(val[i]))
+          str += toString(
+            ignoreKeyOrder
+              ? val[i] && typeof val[i] === 'object'
+                ? hashObjectIgnoreKeyOrder(val[i])
+                : hash(val[i])
+              : hash(val[i])
+          )
         }
         const len = str.length
         if (len < size) {
@@ -38,7 +49,9 @@ const hashCompact = (val: any, size?: number): string => {
         }
         return str
       } else {
-        result = hashObject(val) >>> 0
+        result =
+          (ignoreKeyOrder ? hashObjectIgnoreKeyOrder(val) : hashObject(val)) >>>
+          0
       }
     }
   } else {

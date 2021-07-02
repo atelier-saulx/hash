@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const hash_1 = __importDefault(require("./hash"));
 const stringHash_1 = __importDefault(require("./stringHash"));
 const hashObject_1 = __importDefault(require("./hashObject"));
+const _1 = require(".");
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const toString = (hash) => {
     let result = '';
@@ -17,7 +18,7 @@ const toString = (hash) => {
     } while (hash > 0);
     return result;
 };
-const hashCompact = (val, size) => {
+const hashCompact = (val, size, ignoreKeyOrder) => {
     let result;
     if (typeof val === 'object') {
         if (val === null) {
@@ -28,7 +29,11 @@ const hashCompact = (val, size) => {
                 let str = '';
                 const arraySize = val.length;
                 for (let i = 0; i < arraySize; i++) {
-                    str += toString(hash_1.default(val[i]));
+                    str += toString(ignoreKeyOrder
+                        ? val[i] && typeof val[i] === 'object'
+                            ? _1.hashObjectIgnoreKeyOrder(val[i])
+                            : hash_1.default(val[i])
+                        : hash_1.default(val[i]));
                 }
                 const len = str.length;
                 if (len < size) {
@@ -43,7 +48,9 @@ const hashCompact = (val, size) => {
                 return str;
             }
             else {
-                result = hashObject_1.default(val) >>> 0;
+                result =
+                    (ignoreKeyOrder ? _1.hashObjectIgnoreKeyOrder(val) : hashObject_1.default(val)) >>>
+                        0;
             }
         }
     }

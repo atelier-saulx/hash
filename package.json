@@ -1,7 +1,7 @@
 {
   "name": "@saulx/hash",
   "main": "./dist/index.js",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
