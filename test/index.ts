@@ -1241,6 +1241,7 @@ test('hash ingore key order test collision', async (t) => {
     ])
   }
   const unique: Set<number> = new Set()
+  const negative: Set<number> = new Set()
   let i = 0
   for (const o of arr) {
     i++
@@ -1248,6 +1249,11 @@ test('hash ingore key order test collision', async (t) => {
     if (unique.has(x)) {
       t.fail(`Hash collision! ${x} @ number ${i}`)
     }
+    if (x < 0) {
+      negative.add(x)
+    }
   }
   t.pass('No collision in 1m items')
+
+  t.is(negative.size, 0)
 })

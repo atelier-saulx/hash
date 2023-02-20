@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const hashObjectIgnoreKeyOrderNest_1 = __importDefault(require("./hashObjectIgnoreKeyOrderNest"));
 const hashObjectIgnoreKeyOrder = (props) => {
     const x = hashObjectIgnoreKeyOrderNest_1.default(props);
-    return (x[0] >>> 0) * 4096 + x[1];
+    return (x[0] >>> 0) * 4096 + (x[1] >>> 0);
 };
 exports.default = hashObjectIgnoreKeyOrder;
 //# sourceMappingURL=hashObjectIgnoreKeyOrder.js.map
