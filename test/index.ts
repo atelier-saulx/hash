@@ -19,15 +19,14 @@ test('hash stress', async (t) => {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'
   }
 
-  var d = Date.now()
+  const d = Date.now()
   const x = hashObject(a)
-  console.log('    1mil keys object takes', Date.now() - d, 'ms to hash')
+  console.info('    1mil keys object takes', Date.now() - d, 'ms to hash')
 
   t.true(typeof x === 'number')
 })
 
 test('hash colish', async (t) => {
-  var d = Date.now()
   const prevs: any[] = []
 
   for (let i = 0; i < 1; i++) {
@@ -375,7 +374,6 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async (t) => {
     companyName: '',
   }
 
-  var d = Date.now()
   const x = hashObjectIgnoreKeyOrder(a)
   const y = hashObjectIgnoreKeyOrder(b)
 
@@ -725,7 +723,6 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async (t) => {
     description: '',
   }
 
-  var d = Date.now()
   const x = hashObjectIgnoreKeyOrder(a)
   const y = hashObjectIgnoreKeyOrder(b)
 
@@ -875,7 +872,6 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async (t) => {
     updatedAt: 1606159265527,
   }
 
-  var d = Date.now()
   const x = hashObjectIgnoreKeyOrder(a)
   const y = hashObjectIgnoreKeyOrder(b)
 
@@ -889,10 +885,10 @@ test('hash stress hashObjectIgnoreKeyOrder', async (t) => {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'
   }
 
-  var d = Date.now()
+  const d = Date.now()
   const x = hashObjectIgnoreKeyOrder(a)
 
-  console.log(
+  console.info(
     '    1mil keys object takes',
     Date.now() - d,
     'ms to hash ignore key order'
@@ -1253,6 +1249,5 @@ test('hash ingore key order test collision', async (t) => {
       t.fail(`Hash collision! ${x} @ number ${i}`)
     }
   }
-
   t.pass('No collision in 1m items')
 })
