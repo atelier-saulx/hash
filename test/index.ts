@@ -1,18 +1,18 @@
 import test from 'ava'
 import { hash, hashCompact, hashObject, hashObjectIgnoreKeyOrder } from '../src'
 
-test('hash', async t => {
+test('hash', async (t) => {
   const a = { x: true }
   t.true(hash(a) > 0)
   const bla = {
     x: {
-      bla: 'x'
-    }
+      bla: 'x',
+    },
   }
   t.true(hash(bla) > 0)
 })
 
-test('hash stress', async t => {
+test('hash stress', async (t) => {
   const a = {}
 
   for (let i = 0; i < 1000000; i++) {
@@ -26,12 +26,12 @@ test('hash stress', async t => {
   t.true(typeof x === 'number')
 })
 
-test('hash colish', async t => {
+test('hash colish', async (t) => {
   var d = Date.now()
-  const prevs = []
+  const prevs: any[] = []
 
   for (let i = 0; i < 1; i++) {
-    const set = {}
+    const set: { [key: string]: any } = {}
     prevs.push(set)
     let cnt = 0
     while (cnt < 1e6) {
@@ -70,28 +70,28 @@ test('hash colish', async t => {
   t.pass()
 })
 
-test('hash  hashObjectIgnoreKeyOrder', async t => {
+test('hash  hashObjectIgnoreKeyOrder', async (t) => {
   const a = {
     a: true,
     b: true,
     c: {
       d: true,
-      e: true
-    }
+      e: true,
+    },
   }
   const b = {
     c: {
       e: true,
-      d: true
+      d: true,
     },
     b: true,
-    a: true
+    a: true,
   }
 
   t.is(hashObjectIgnoreKeyOrder(a), hashObjectIgnoreKeyOrder(b))
 })
 
-test('hash  hashObjectIgnoreKeyOrder large', async t => {
+test('hash  hashObjectIgnoreKeyOrder large', async (t) => {
   const a = {
     children: [
       {
@@ -99,14 +99,14 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: false,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: false,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -115,22 +115,22 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://based-videos-fra.s3.eu-central-1.amazonaws.com/5f9bdb334d7c7d975473bab4413f1d73/5f9bdb334d7c7d975473bab4413f1d73.m3u8'
+          'https://based-videos-fra.s3.eu-central-1.amazonaws.com/5f9bdb334d7c7d975473bab4413f1d73/5f9bdb334d7c7d975473bab4413f1d73.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     type: 'edition',
     title: 'JESC 2020',
@@ -141,11 +141,10 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
     aliases: ['jesc'],
     name: '',
     config: {
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
       borderRadius: 0,
-      logoLink: 'https://hotmail.com'
+      logoLink: 'https://hotmail.com',
     },
     logo: '',
     updatedAt: 1605711695555,
@@ -157,9 +156,9 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
       background: 'rgb(17,11,87)',
       itemBackground: 'rgb(252,252,252)',
       itemText: 'rgb(0,0,0)',
-      text: 'rgb(254,255,254)'
+      text: 'rgb(254,255,254)',
     },
-    companyName: ''
+    companyName: '',
   }
 
   const b = {
@@ -169,14 +168,14 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: true,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: false,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -185,22 +184,22 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://based-videos-fra.s3.eu-central-1.amazonaws.com/5f9bdb334d7c7d975473bab4413f1d73/5f9bdb334d7c7d975473bab4413f1d73.m3u8'
+          'https://based-videos-fra.s3.eu-central-1.amazonaws.com/5f9bdb334d7c7d975473bab4413f1d73/5f9bdb334d7c7d975473bab4413f1d73.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     type: 'edition',
     title: 'JESC 2020',
@@ -211,11 +210,10 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
     aliases: ['jesc'],
     name: '',
     config: {
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
       borderRadius: 0,
-      logoLink: 'https://hotmail.com'
+      logoLink: 'https://hotmail.com',
     },
     logo: '',
     updatedAt: 1605711695555,
@@ -227,9 +225,9 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
       background: 'rgb(17,11,87)',
       itemBackground: 'rgb(252,252,252)',
       itemText: 'rgb(0,0,0)',
-      text: 'rgb(254,255,254)'
+      text: 'rgb(254,255,254)',
     },
-    companyName: ''
+    companyName: '',
   }
 
   const x = hashObjectIgnoreKeyOrder(a)
@@ -238,7 +236,7 @@ test('hash  hashObjectIgnoreKeyOrder large', async t => {
   t.true(x !== y)
 })
 
-test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
+test('hash  hashObjectIgnoreKeyOrder large 2', async (t) => {
   const a = {
     children: [
       {
@@ -246,14 +244,14 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: false,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: false,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -262,22 +260,22 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8'
+          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     type: 'edition',
     title: 'JESC 2020',
@@ -288,11 +286,10 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
     aliases: ['jesc'],
     name: '',
     config: {
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
       borderRadius: 0,
-      logoLink: 'https://hotmail.com'
+      logoLink: 'https://hotmail.com',
     },
     logo: '',
     updatedAt: 1605711695555,
@@ -304,9 +301,9 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
       background: 'rgb(17,11,87)',
       itemBackground: 'rgb(252,252,252)',
       itemText: 'rgb(0,0,0)',
-      text: 'rgb(254,255,254)'
+      text: 'rgb(254,255,254)',
     },
-    companyName: ''
+    companyName: '',
   }
 
   const b = {
@@ -316,14 +313,14 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: true,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: false,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -332,22 +329,22 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8'
+          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     type: 'edition',
     title: 'JESC 2020',
@@ -358,11 +355,10 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
     aliases: ['jesc'],
     name: '',
     config: {
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
       borderRadius: 0,
-      logoLink: 'https://hotmail.com'
+      logoLink: 'https://hotmail.com',
     },
     logo: '',
     updatedAt: 1605711695555,
@@ -374,9 +370,9 @@ test('hash  hashObjectIgnoreKeyOrder large 2', async t => {
       background: 'rgb(17,11,87)',
       itemBackground: 'rgb(252,252,252)',
       itemText: 'rgb(0,0,0)',
-      text: 'rgb(254,255,254)'
+      text: 'rgb(254,255,254)',
     },
-    companyName: ''
+    companyName: '',
   }
 
   var d = Date.now()
@@ -409,7 +405,7 @@ const large = {
       ogImage: '',
       alias: '',
       video:
-        'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+        'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
     },
     {
       name: '',
@@ -429,7 +425,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -449,7 +445,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -469,7 +465,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -489,7 +485,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -509,7 +505,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -529,7 +525,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: 'an alias',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -549,7 +545,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -569,7 +565,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -589,7 +585,7 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
+      video: '',
     },
     {
       name: '',
@@ -611,7 +607,7 @@ const large = {
       ogImage: '',
       alias: 'arina',
       video:
-        'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8'
+        'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
     },
     {
       name: '',
@@ -631,8 +627,8 @@ const large = {
         '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
       ogImage: '',
       alias: '',
-      video: ''
-    }
+      video: '',
+    },
   ],
   imageEnabled: false,
   title: 'Choisissez vos 3 chansons préférées et validez votre vote.',
@@ -646,11 +642,11 @@ const large = {
   alias: '',
   settings: {
     rangeMin: 3,
-    rangeMax: 3
-  }
+    rangeMax: 3,
+  },
 }
 
-test('hash  hashObjectIgnoreKeyOrder large 3.1', async t => {
+test('hash  hashObjectIgnoreKeyOrder large 3.1', async (t) => {
   for (let i = 0; i < 10000; i++) {
     const a = { ...large }
     const b = large
@@ -661,7 +657,7 @@ test('hash  hashObjectIgnoreKeyOrder large 3.1', async t => {
   }
 })
 
-test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
+test('hash  hashObjectIgnoreKeyOrder large 3', async (t) => {
   const a = {
     type: 'multipleChoice',
     disabled: false,
@@ -681,8 +677,8 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
         ogTitle: '',
         caption:
           '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
-        ogImage: ''
-      }
+        ogImage: '',
+      },
     ],
     imageEnabled: false,
     title: 'Choisissez vos 3 chansons préférées et validez votre vote.',
@@ -692,7 +688,7 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
     image: '',
     index: 3,
     name: 'Multiple Choice',
-    description: ''
+    description: '',
   }
 
   const b = {
@@ -715,8 +711,8 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
         ogTitle: '',
         caption:
           '<img style="display:inline;margin-bottom:-5px;" src="https://based-images.imgix.net/ae51fab48e15810ed338fc774064cb26.png" width="20px"/> Belarus',
-        ogImage: ''
-      }
+        ogImage: '',
+      },
     ],
     imageEnabled: false,
     title: 'Choisissez vos 3 chansons préférées et validez votre vote.',
@@ -726,7 +722,7 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
     image: '',
     index: 3,
     name: 'Multiple Choice',
-    description: ''
+    description: '',
   }
 
   var d = Date.now()
@@ -736,7 +732,7 @@ test('hash  hashObjectIgnoreKeyOrder large 3', async t => {
   t.true(x !== y)
 })
 
-test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
+test('hash  hashObjectIgnoreKeyOrder large 4', async (t) => {
   const a = {
     children: [
       {
@@ -744,14 +740,14 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: true,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: false,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -760,22 +756,22 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8'
+          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     companyName: '',
     ogTitle: '',
@@ -788,10 +784,9 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
     config: {
       borderRadius: 0,
       logoLink: 'https://hotmail.com',
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
-      roundId: 0
+      roundId: 0,
     },
     logo: '',
     ogImage: '',
@@ -804,9 +799,9 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
       text: 'rgb(254,255,254)',
       backgroundImage:
         'https://based-images.imgix.net/c37e075134b55505f28fc28c7c21536c.png',
-      itemText: 'rgb(0,0,0)'
+      itemText: 'rgb(0,0,0)',
     },
-    updatedAt: 1606159265527
+    updatedAt: 1606159265527,
   }
 
   const b = {
@@ -816,14 +811,14 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
         index: 0,
         id: 'wa4ab7e44c',
         disabled: true,
-        title: 'Wait # 1'
+        title: 'Wait # 1',
       },
       {
         type: 'welcomeScreen',
         index: 1,
         id: 'we7e8b4bfc',
         disabled: true,
-        title: 'The voting will start soon!'
+        title: 'The voting will start soon!',
       },
       {
         type: 'videoScreen',
@@ -832,22 +827,22 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
         title: 'Watch the recap first!',
         disabled: false,
         video:
-          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8'
+          'https://cdn.based.io/ef728d8a807067f2e73591d4850c5f8a/ef728d8a807067f2e73591d4850c5f8a.m3u8',
       },
       {
         type: 'multipleChoice',
         index: 3,
         id: 'mu241ab268',
         disabled: false,
-        title: 'Pick 3 of your favorite songs and submit your vote.'
+        title: 'Pick 3 of your favorite songs and submit your vote.',
       },
       {
         type: 'thankYouScreen',
         index: 4,
         id: 'thba70c809',
         disabled: false,
-        title: 'Thank you for voting!'
-      }
+        title: 'Thank you for voting!',
+      },
     ],
     companyName: '',
     ogTitle: '',
@@ -860,10 +855,9 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
     config: {
       borderRadius: 0,
       logoLink: 'https://hotmail.com',
-      logo:
-        'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
+      logo: 'https://static.junioreurovision.tv/dist/assets/images/jesc_slogan.c6c10aa7dcf40254bf08d7f7f3d65b90.png',
       borderWidth: 0,
-      roundId: 0
+      roundId: 0,
     },
     logo: '',
     ogImage: '',
@@ -876,9 +870,9 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
       text: 'rgb(254,255,254)',
       backgroundImage:
         'https://based-images.imgix.net/c37e075134b55505f28fc28c7c21536c.png',
-      itemText: 'rgb(0,0,0)'
+      itemText: 'rgb(0,0,0)',
     },
-    updatedAt: 1606159265527
+    updatedAt: 1606159265527,
   }
 
   var d = Date.now()
@@ -888,7 +882,7 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async t => {
   t.true(x !== y)
 })
 
-test('hash stress hashObjectIgnoreKeyOrder', async t => {
+test('hash stress hashObjectIgnoreKeyOrder', async (t) => {
   const a = {}
 
   for (let i = 0; i < 1000000; i++) {
@@ -907,7 +901,7 @@ test('hash stress hashObjectIgnoreKeyOrder', async t => {
   t.true(typeof x === 'number')
 })
 
-test('hash test equality 1', async t => {
+test('hash test equality 1', async (t) => {
   const a = {
     type: 'folder',
     title: '',
@@ -920,10 +914,10 @@ test('hash test equality 1', async t => {
         name: '',
         id: 'ma1',
         aliases: [],
-        published: false
-      }
+        published: false,
+      },
     ],
-    aliases: []
+    aliases: [],
   }
   const b = {
     type: 'folder',
@@ -937,10 +931,10 @@ test('hash test equality 1', async t => {
         name: '',
         id: 'ma1',
         aliases: [],
-        published: false
-      }
+        published: false,
+      },
     ],
-    aliases: []
+    aliases: [],
   }
 
   const hashA1 = hashObject(a)
@@ -953,7 +947,7 @@ test('hash test equality 1', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 2', async t => {
+test('hash test equality 2', async (t) => {
   const a = {
     type: 'folder',
     title: '',
@@ -966,10 +960,10 @@ test('hash test equality 2', async t => {
         name: '',
         id: 'ma1',
         aliases: [],
-        published: false
-      }
+        published: false,
+      },
     ],
-    aliases: []
+    aliases: [],
   }
   const b = {
     type: 'folder',
@@ -983,10 +977,10 @@ test('hash test equality 2', async t => {
         name: '',
         id: 'ma1',
         aliases: [],
-        published: false
-      }
+        published: false,
+      },
     ],
-    aliases: []
+    aliases: [],
   }
 
   const hashA1 = hashObject(a)
@@ -999,7 +993,7 @@ test('hash test equality 2', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 3', async t => {
+test('hash test equality 3', async (t) => {
   const a = {
     type: 'videoScreen',
     index: 0,
@@ -1012,7 +1006,7 @@ test('hash test equality 3', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
   const b = {
     type: 'videoScreen',
@@ -1026,7 +1020,7 @@ test('hash test equality 3', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
 
   const hashA1 = hashObject(a)
@@ -1039,7 +1033,7 @@ test('hash test equality 3', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 4', async t => {
+test('hash test equality 4', async (t) => {
   const a = {
     type: 'videoScreen',
     index: 0,
@@ -1052,7 +1046,7 @@ test('hash test equality 4', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
   const b = {
     type: 'videoScreen',
@@ -1066,7 +1060,7 @@ test('hash test equality 4', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
 
   const hashA1 = hashObject(a)
@@ -1079,7 +1073,7 @@ test('hash test equality 4', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 5', async t => {
+test('hash test equality 5', async (t) => {
   const a = {
     type: 'videoScreen',
     index: 0,
@@ -1092,7 +1086,7 @@ test('hash test equality 5', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
   const b = {
     type: 'videoScreen',
@@ -1106,7 +1100,7 @@ test('hash test equality 5', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
 
   const hashA1 = hashObject(a)
@@ -1119,12 +1113,12 @@ test('hash test equality 5', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 6', async t => {
+test('hash test equality 6', async (t) => {
   const a = {
-    buttonText: 'aax'
+    buttonText: 'aax',
   }
   const b = {
-    buttonText: 'b'
+    buttonText: 'b',
   }
 
   const hashA1 = hashObject(a)
@@ -1137,7 +1131,7 @@ test('hash test equality 6', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash test equality 7', async t => {
+test('hash test equality 7', async (t) => {
   const a = {
     type: 'videoScreen',
     index: 0,
@@ -1150,7 +1144,7 @@ test('hash test equality 7', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
   const b = {
     type: 'videoScreen',
@@ -1164,7 +1158,7 @@ test('hash test equality 7', async t => {
     name: 'Video Screen',
     aliases: [],
     children: [],
-    videoMandatory: false
+    videoMandatory: false,
   }
 
   const hashA1 = hashObject(a)
@@ -1177,15 +1171,15 @@ test('hash test equality 7', async t => {
   t.true(hashA !== hashB)
 })
 
-test('hash fixed length', async t => {
-  const texts = []
+test('hash fixed length', async (t) => {
+  const texts: any[] = []
   for (let i = 0; i < 10000; i++) {
     const nr = Math.random() * 100
     texts[i] =
       nr < 33
         ? {
             blxxxa: ~~(Math.random() * 100 * 10000).toString(16),
-            bla: ~~(Math.random() * 100 * 10000).toString(16)
+            bla: ~~(Math.random() * 100 * 10000).toString(16),
           }
         : nr < 66
         ? (Math.random() * 100 * 10000).toString(16)
@@ -1216,12 +1210,12 @@ test('hash fixed length', async t => {
   }
 })
 
-test('hash fixed length ignore key order', async t => {
+test('hash fixed length ignore key order', async (t) => {
   const a = hashCompact(
     {
       x: 1,
       y: 2,
-      z: 'flapper'
+      z: 'flapper',
     },
     10,
     true
@@ -1231,11 +1225,34 @@ test('hash fixed length ignore key order', async t => {
     {
       z: 'flapper',
       x: 1,
-      y: 2
+      y: 2,
     },
     10,
     true
   )
 
   t.is(a, b)
+})
+
+test('hash ingore key order test collision', async (t) => {
+  const arr: [string, { myQuery: number }][] = []
+  for (let i = 0; i < 1e6; i++) {
+    arr.push([
+      'counter',
+      {
+        myQuery: i,
+      },
+    ])
+  }
+  const unique: Set<number> = new Set()
+  let i = 0
+  for (const o of arr) {
+    i++
+    const x = hashObjectIgnoreKeyOrder(o)
+    if (unique.has(x)) {
+      t.fail(`Hash collision! ${x} @ number ${i}`)
+    }
+  }
+
+  t.pass('No collision in 1m items')
 })

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const stringHash_1 = __importDefault(require("./stringHash"));
 const hashObjectNest = (obj, hash = 5381, hash2 = 52711) => {
-    if (obj.constructor === Array) {
+    if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; i++) {
             const field = obj[i];
             const type = typeof field;
@@ -39,7 +39,7 @@ const hashObjectNest = (obj, hash = 5381, hash2 = 52711) => {
         }
     }
     else {
-        for (let key in obj) {
+        for (const key in obj) {
             const field = obj[key];
             const type = typeof field;
             if (type === 'string') {

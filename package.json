@@ -1,13 +1,13 @@
 {
   "name": "@saulx/hash",
   "main": "./dist/index.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "ava --verbose"
   },
-  "repository": "https://github.com/atelier-saulx/utils",
+  "repository": "https://github.com/atelier-saulx/hash",
   "lint-staged": {
     "{js,json}": [
       "prettier --write",
@@ -20,10 +20,8 @@
   },
   "ava": {
     "files": [
-      "test/**/*.ts",
-      "!test/examples"
+      "test/**/*.ts"
     ],
-    "compileEnhancements": false,
     "extensions": [
       "ts"
     ],
@@ -41,12 +39,12 @@
   "devDependencies": {
     "@saulx/eslint-config": "https://github.com/atelier-saulx/eslint-config",
     "@saulx/prettier-config": "https://github.com/atelier-saulx/prettier-config",
-    "ava": "2.4.0",
-    "eslint": "^6.5.1",
+    "ava": "3.15.0",
+    "eslint": "^7.18.0",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.3"
+    "prettier": "^2.2.1",
+    "ts-node": "8.5.4",
+    "typescript": "3.7.3"
   }
 }

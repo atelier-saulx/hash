@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const stringHash_1 = __importDefault(require("./stringHash"));
 const hashObjectIgnoreKeyOrderNest = (obj, hash = 5381, hash2 = 52711) => {
-    if (obj.constructor === Array) {
+    if (Array.isArray(obj)) {
         const fl = '__len:' + obj.length + 1;
         hash = stringHash_1.default(fl, hash);
         hash2 = stringHash_1.default(fl, hash2);

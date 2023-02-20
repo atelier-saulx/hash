@@ -5,7 +5,7 @@ const hashObjectNest = (
   hash = 5381,
   hash2 = 52711
 ): [number, number] => {
-  if (obj.constructor === Array) {
+  if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
       const field = obj[i]
       const type = typeof field
@@ -34,7 +34,7 @@ const hashObjectNest = (
       }
     }
   } else {
-    for (let key in obj) {
+    for (const key in obj) {
       const field = obj[key]
       const type = typeof field
       if (type === 'string') {

@@ -5,7 +5,7 @@ const hashObjectIgnoreKeyOrderNest = (
   hash: number = 5381,
   hash2: number = 52711
 ): [number, number] => {
-  if (obj.constructor === Array) {
+  if (Array.isArray(obj)) {
     const fl = '__len:' + obj.length + 1
     hash = stringHash(fl, hash)
     hash2 = stringHash(fl, hash2)
