@@ -1,5 +1,10 @@
 import test from 'ava'
-import { hash, hashCompact, hashObject, hashObjectIgnoreKeyOrder } from '../src'
+import {
+  hash,
+  hashCompact,
+  hashObject,
+  hashObjectIgnoreKeyOrder,
+} from '../src/index.js'
 
 test('hash', async (t) => {
   const a = { x: true }
@@ -10,30 +15,71 @@ test('hash', async (t) => {
     },
   }
   t.true(hash(bla) > 0)
+  t.pass('xx')
 })
 
-test('hash stress', async (t) => {
-  const a = {}
+test('hash array', async (t) => {
+  const a: number[] = [1, 2, 3, 4, 5, 6]
+  const x = hashObject(a)
+  const prevs: any[] = []
+  const set: { [key: string]: string } = {}
+  prevs.push(set)
+  let cnt = 0
+  while (cnt < 1e6) {
+    const randoArray: number[] = []
+    for (let i = 0; i < 6; i++) {
+      randoArray.push(Math.floor(Math.random() * 10))
+    }
+    const x = hashObject(randoArray)
+    let str = randoArray.join(',')
+    if (set[x] && set[x] !== str) {
+      t.fail(`'Colision ${str} '-->', ${set[x]} hash: ${x}`)
+    }
+    set[x] = str
+    cnt++
+  }
+  t.true(typeof x === 'number')
+})
 
-  for (let i = 0; i < 1000000; i++) {
+test('hash stress many arrays', async (t) => {
+  const a: number[] = []
+  for (let i = 0; i < 6; i++) {
+    a.push(Math.floor(Math.random() * 10))
+  }
+  const d = Date.now()
+  let x: number = 0
+  for (let i = 0; i < 1e6; i++) {
+    x = hashObject(a)
+  }
+  console.info(
+    '    1mil hashObject on array object takes',
+    Date.now() - d,
+    'ms to hash'
+  )
+  t.true(typeof x === 'number')
+})
+
+test('hash stress object with many keys', async (t) => {
+  const a: any = {}
+  for (let i = 0; i < 1e6; i++) {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'
   }
-
   const d = Date.now()
   const x = hashObject(a)
   console.info('    1mil keys object takes', Date.now() - d, 'ms to hash')
-
   t.true(typeof x === 'number')
 })
 
 test('hash colish', async (t) => {
   const prevs: any[] = []
 
-  for (let i = 0; i < 1; i++) {
+  let ipCnt = 0
+  for (let i = 0; i < 2; i++) {
     const set: { [key: string]: any } = {}
     prevs.push(set)
     let cnt = 0
     while (cnt < 1e6) {
+      ipCnt++
       const ip =
         Math.floor(Math.random() * 255) +
         1 +
@@ -57,7 +103,7 @@ test('hash colish', async (t) => {
 
       if (prev) {
         if (prev !== ip) {
-          t.fail('Colish ' + ip + ' ' + prev + ' hash ' + x)
+          t.fail(`Colish ${ip} ${prev} hash ${x} #${ipCnt}`)
         }
       }
       cnt++
@@ -879,7 +925,7 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async (t) => {
 })
 
 test('hash stress hashObjectIgnoreKeyOrder', async (t) => {
-  const a = {}
+  const a: any = {}
 
   for (let i = 0; i < 1000000; i++) {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'

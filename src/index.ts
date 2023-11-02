@@ -1,10 +1,10 @@
-import hash from './hash'
-import hashCompact from './hashCompact'
-import hashObject from './hashObject'
-import hashObjectIgnoreKeyOrder from './hashObjectIgnoreKeyOrder'
-import hashObjectIgnoreKeyOrderNest from './hashObjectIgnoreKeyOrderNest'
-import hashObjectNest from './hashObjectNest'
-import stringHash from './stringHash'
+import hash from './hash.js'
+import hashCompact from './hashCompact.js'
+import hashObject from './hashObject.js'
+import hashObjectIgnoreKeyOrder from './hashObjectIgnoreKeyOrder.js'
+import hashObjectIgnoreKeyOrderNest from './hashObjectIgnoreKeyOrderNest.js'
+import hashObjectNest from './hashObjectNest.js'
+import stringHash from './stringHash.js'
 
 export {
   hash,
@@ -13,5 +13,5 @@ export {
   hashObjectIgnoreKeyOrder,
   hashObjectIgnoreKeyOrderNest,
   hashObjectNest,
-  stringHash
+  stringHash,
 }

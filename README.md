@@ -1,6 +1,6 @@
 # hash
 
-Hash packages for saulx, returns 64 bit hashes
+Fast, low collision hashing based on djb2
 
 ## hash
 
