@@ -72,3 +72,4 @@ const hashObjectNest = (obj, hash = 5381, hash2 = 52711) => {
     return [hash, hash2];
 };
 export default hashObjectNest;
+//# sourceMappingURL=hashObjectNest.js.map

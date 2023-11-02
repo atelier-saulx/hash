@@ -33,3 +33,4 @@ const hash = (val, size) => {
     return result;
 };
 export default hash;
+//# sourceMappingURL=hash.js.map

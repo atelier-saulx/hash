@@ -19,7 +19,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "checkJs": true,
-    "outDir": "./dist"
+    "sourceMap": true,
+    "outDir": "./dist",
+    "declaration": true
   },
   "strict": true,
   "exclude": ["node_modules", "test", "dist", "_src"]

@@ -7,3 +7,4 @@ const stringHash = (str, hash = 5381) => {
     return hash;
 };
 export default stringHash;
+//# sourceMappingURL=stringHash.js.map
