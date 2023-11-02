@@ -10,16 +10,10 @@
     "test": "ava --verbose"
   },
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/src/index.js",
   "ava": {
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=ts-node/esm"
-    ],
     "files": [
-      "test/**/*.ts"
+      "./dist/test/**/*.js"
     ]
   },
   "keywords": [
@@ -29,9 +23,7 @@
   ],
   "prettier": "@saulx/prettier-config",
   "devDependencies": {
-    "@ava/typescript": "^4.1.0",
     "ava": "5.3.1",
-    "ts-node": "10.9.1",
     "@saulx/prettier-config": "^1.0.0"
   }
 }

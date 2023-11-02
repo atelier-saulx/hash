@@ -22,5 +22,5 @@
     "declaration": true
   },
   "strict": true,
-  "exclude": ["node_modules", "test", "dist", "_src"]
+  "exclude": ["node_modules", "dist", "_src"]
 }

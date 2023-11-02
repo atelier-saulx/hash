@@ -4,7 +4,7 @@ import {
   hashCompact,
   hashObject,
   hashObjectIgnoreKeyOrder,
-} from '../dist'
+} from '../src/index.js'
 
 test('hash', async (t) => {
   const a = { x: true }
@@ -19,7 +19,7 @@ test('hash', async (t) => {
 })
 
 test('hash stress', async (t) => {
-  const a = {}
+  const a: any = {}
 
   for (let i = 0; i < 1000000; i++) {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'
@@ -885,7 +885,7 @@ test('hash  hashObjectIgnoreKeyOrder large 4', async (t) => {
 })
 
 test('hash stress hashObjectIgnoreKeyOrder', async (t) => {
-  const a = {}
+  const a: any = {}
 
   for (let i = 0; i < 1000000; i++) {
     a[(~~(Math.random() * 1000000)).toString(16)] = 'flurpy'
