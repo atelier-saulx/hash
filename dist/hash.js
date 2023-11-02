@@ -1,10 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const hashObject_1 = __importDefault(require("./hashObject"));
-const stringHash_1 = __importDefault(require("./stringHash"));
+import hashObject from './hashObject';
+import stringHash from './stringHash';
 // no murmur (and no buffers) for browser
 const hash = (val, size) => {
     let result;
@@ -13,20 +8,20 @@ const hash = (val, size) => {
             result = 0;
         }
         else {
-            result = hashObject_1.default(val);
+            result = hashObject(val);
         }
     }
     else {
         if (typeof val === 'boolean') {
-            result = (stringHash_1.default(val ? ':true' : ':false') >>> 0) * 4096;
+            result = (stringHash(val ? ':true' : ':false') >>> 0) * 4096;
         }
         else if (typeof val === 'number') {
             result =
-                (stringHash_1.default('n:' + val) >>> 0) * 4096 +
-                    (stringHash_1.default('n:' + val, 52711) >>> 0);
+                (stringHash('n:' + val) >>> 0) * 4096 +
+                    (stringHash('n:' + val, 52711) >>> 0);
         }
         else {
-            result = (stringHash_1.default(val) >>> 0) * 4096 + (stringHash_1.default(val, 52711) >>> 0);
+            result = (stringHash(val) >>> 0) * 4096 + (stringHash(val, 52711) >>> 0);
         }
     }
     if (size) {
@@ -37,5 +32,4 @@ const hash = (val, size) => {
     }
     return result;
 };
-exports.default = hash;
-//# sourceMappingURL=hash.js.map
+export default hash;

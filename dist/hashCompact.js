@@ -1,12 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const hash_1 = __importDefault(require("./hash"));
-const stringHash_1 = __importDefault(require("./stringHash"));
-const hashObject_1 = __importDefault(require("./hashObject"));
-const _1 = require(".");
+import hash from './hash';
+import stringHash from './stringHash';
+import hashObject from './hashObject';
+import { hashObjectIgnoreKeyOrder } from '.';
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const toString = (hash) => {
     let result = '';
@@ -31,9 +26,9 @@ const hashCompact = (val, size, ignoreKeyOrder) => {
                 for (let i = 0; i < arraySize; i++) {
                     str += toString(ignoreKeyOrder
                         ? val[i] && typeof val[i] === 'object'
-                            ? _1.hashObjectIgnoreKeyOrder(val[i])
-                            : hash_1.default(val[i])
-                        : hash_1.default(val[i]));
+                            ? hashObjectIgnoreKeyOrder(val[i])
+                            : hash(val[i])
+                        : hash(val[i]));
                 }
                 const len = str.length;
                 if (len < size) {
@@ -49,25 +44,25 @@ const hashCompact = (val, size, ignoreKeyOrder) => {
             }
             else {
                 result =
-                    (ignoreKeyOrder ? _1.hashObjectIgnoreKeyOrder(val) : hashObject_1.default(val)) >>>
+                    (ignoreKeyOrder ? hashObjectIgnoreKeyOrder(val) : hashObject(val)) >>>
                         0;
             }
         }
     }
     else {
         if (typeof val === 'boolean') {
-            result = stringHash_1.default(val ? ':true' : ':false') * 4096;
+            result = stringHash(val ? ':true' : ':false') * 4096;
         }
         else if (typeof val === 'number') {
-            result = (stringHash_1.default('n:' + val) >>> 0) * 4096;
+            result = (stringHash('n:' + val) >>> 0) * 4096;
         }
         else {
-            result = stringHash_1.default(val) >>> 0;
+            result = stringHash(val) >>> 0;
         }
     }
     let x = toString(result);
     const len = x.length;
-    if (len < size) {
+    if (size && len < size) {
         x += 'x';
         if (len + 1 < size) {
             x += new Array(size - len).join('0');
@@ -75,5 +70,4 @@ const hashCompact = (val, size, ignoreKeyOrder) => {
     }
     return x;
 };
-exports.default = hashCompact;
-//# sourceMappingURL=hashCompact.js.map
+export default hashCompact;

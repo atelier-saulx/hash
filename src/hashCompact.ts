@@ -65,7 +65,7 @@ const hashCompact = (
   }
   let x = toString(result)
   const len = x.length
-  if (len < size) {
+  if (size && len < size) {
     x += 'x'
     if (len + 1 < size) {
       x += new Array(size - len).join('0')

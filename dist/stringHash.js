@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const stringHash = (str, hash = 5381) => {
     let i = str.length;
     while (i) {
@@ -8,5 +6,4 @@ const stringHash = (str, hash = 5381) => {
     }
     return hash;
 };
-exports.default = stringHash;
-//# sourceMappingURL=stringHash.js.map
+export default stringHash;

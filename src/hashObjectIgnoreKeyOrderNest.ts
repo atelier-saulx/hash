@@ -1,7 +1,7 @@
 import stringHash from './stringHash'
 
 const hashObjectIgnoreKeyOrderNest = (
-  obj: object | any[],
+  obj: { [key: string]: any } | any[],
   hash: number = 5381,
   hash2: number = 52711
 ): [number, number] => {
@@ -46,6 +46,9 @@ const hashObjectIgnoreKeyOrderNest = (
 
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i]
+      if (key === undefined) {
+        continue
+      }
       const field = obj[key]
       const type = typeof field
       if (type === 'string') {

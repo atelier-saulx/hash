@@ -1,7 +1,7 @@
 import stringHash from './stringHash'
 
 const hashObjectNest = (
-  obj: object | any[],
+  obj: { [key: string]: any } | any[],
   hash = 5381,
   hash2 = 52711
 ): [number, number] => {
@@ -35,6 +35,9 @@ const hashObjectNest = (
     }
   } else {
     for (const key in obj) {
+      if (key === undefined) {
+        continue
+      }
       const field = obj[key]
       const type = typeof field
       if (type === 'string') {
