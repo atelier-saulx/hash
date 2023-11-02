@@ -8,6 +8,9 @@
     "performance",
     "object"
   ],
+  "files": [
+    "dist/src"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
