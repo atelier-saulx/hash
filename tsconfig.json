@@ -1,4 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@saulx/tsconfig/config.json"
+  "extends": "@saulx/tsconfig/default.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src", "test"]
 }
