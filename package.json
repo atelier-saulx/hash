@@ -3,6 +3,11 @@
   "version": "3.0.0",
   "description": "Fast, low collision hashing based on djb2",
   "repository": "https://github.com/atelier-saulx/hash",
+  "keywords": [
+    "hash",
+    "performance",
+    "object"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -16,11 +21,6 @@
       "./dist/test/**/*.js"
     ]
   },
-  "keywords": [
-    "hash",
-    "performance",
-    "object"
-  ],
   "prettier": "@saulx/prettier-config",
   "devDependencies": {
     "ava": "5.3.1",
