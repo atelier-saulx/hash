@@ -10,9 +10,7 @@
     "test": "ava --verbose"
   },
   "type": "module",
-  "exports": {
-    ".": "./dist/index.js"
-  },
+  "exports": "./dist/index.js",
   "ava": {
     "typescript": {
       "rewritePaths": {
