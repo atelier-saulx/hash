@@ -24,6 +24,7 @@
   "prettier": "@saulx/prettier-config",
   "devDependencies": {
     "ava": "5.3.1",
+    "@saulx/tsconfig": "^1.0.0",
     "@saulx/prettier-config": "^1.0.0"
   }
 }
