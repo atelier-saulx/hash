@@ -18,7 +18,7 @@ test('hash', async (t) => {
   t.pass('xx')
 })
 
-test('hash stress', async (t) => {
+test.only('hash stress', async (t) => {
   const a: any = {}
 
   for (let i = 0; i < 1000000; i++) {
