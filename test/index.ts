@@ -1,5 +1,10 @@
 import test from 'ava'
-import { hash, hashCompact, hashObject, hashObjectIgnoreKeyOrder } from '../'
+import {
+  hash,
+  hashCompact,
+  hashObject,
+  hashObjectIgnoreKeyOrder,
+} from '../dist'
 
 test('hash', async (t) => {
   const a = { x: true }
@@ -10,6 +15,7 @@ test('hash', async (t) => {
     },
   }
   t.true(hash(bla) > 0)
+  t.pass('xx')
 })
 
 test('hash stress', async (t) => {
@@ -27,10 +33,10 @@ test('hash stress', async (t) => {
 })
 
 test('hash colish', async (t) => {
-  const prevs = []
+  const prevs: any[] = []
 
   for (let i = 0; i < 1; i++) {
-    const set = {}
+    const set: { [key: string]: any } = {}
     prevs.push(set)
     let cnt = 0
     while (cnt < 1e6) {
@@ -1168,7 +1174,7 @@ test('hash test equality 7', async (t) => {
 })
 
 test('hash fixed length', async (t) => {
-  const texts = []
+  const texts: any[] = []
   for (let i = 0; i < 10000; i++) {
     const nr = Math.random() * 100
     texts[i] =
@@ -1231,7 +1237,7 @@ test('hash fixed length ignore key order', async (t) => {
 })
 
 test('hash ingore key order test collision', async (t) => {
-  const arr = []
+  const arr: [string, { myQuery: number }][] = []
   for (let i = 0; i < 1e6; i++) {
     arr.push([
       'counter',
@@ -1240,8 +1246,8 @@ test('hash ingore key order test collision', async (t) => {
       },
     ])
   }
-  const unique = new Set()
-  const negative = new Set()
+  const unique: Set<number> = new Set()
+  const negative: Set<number> = new Set()
   let i = 0
   for (const o of arr) {
     i++

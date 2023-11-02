@@ -11,14 +11,16 @@
   },
   "type": "module",
   "main": "./dist/index.js",
-  "exports": "./dist/index.js",
   "ava": {
-    "typescript": {
-      "rewritePaths": {
-        "src/": "dist/"
-      },
-      "compile": false
-    }
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ],
+    "files": [
+      "test/**/*.ts"
+    ]
   },
   "keywords": [
     "hash",
@@ -26,14 +28,10 @@
     "object"
   ],
   "prettier": "@saulx/prettier-config",
-  "eslintConfig": {
-    "extends": "@saulx/eslint-config"
-  },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
     "ava": "5.3.1",
-    "typescript": "5.2.2",
-    "@saulx/prettier-config": "^1.0.0",
-    "@saulx/eslint-config": "^1.1.1"
+    "ts-node": "10.9.1",
+    "@saulx/prettier-config": "^1.0.0"
   }
 }

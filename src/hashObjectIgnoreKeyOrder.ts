@@ -1,4 +1,4 @@
-import hashObjectIgnoreKeyOrderNest from './hashObjectIgnoreKeyOrderNest'
+import hashObjectIgnoreKeyOrderNest from './hashObjectIgnoreKeyOrderNest.js'
 
 const hashObjectIgnoreKeyOrder = (props: object): number => {
   const x = hashObjectIgnoreKeyOrderNest(props)

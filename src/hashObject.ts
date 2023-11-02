@@ -1,4 +1,4 @@
-import hashObjectNest from './hashObjectNest'
+import hashObjectNest from './hashObjectNest.js'
 
 const hashObject = (props: object): number => {
   const x = hashObjectNest(props)

@@ -1,7 +1,7 @@
-import hash from './hash'
-import stringHash from './stringHash'
-import hashObject from './hashObject'
-import { hashObjectIgnoreKeyOrder } from '.'
+import hash from './hash.js'
+import stringHash from './stringHash.js'
+import hashObject from './hashObject.js'
+import { hashObjectIgnoreKeyOrder } from './index.js'
 
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 

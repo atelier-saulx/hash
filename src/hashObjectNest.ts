@@ -1,4 +1,4 @@
-import stringHash from './stringHash'
+import stringHash from './stringHash.js'
 
 const hashObjectNest = (
   obj: { [key: string]: any } | any[],

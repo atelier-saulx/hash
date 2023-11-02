@@ -1,4 +1,4 @@
-import stringHash from './stringHash';
+import stringHash from './stringHash.js';
 const hashObjectNest = (obj, hash = 5381, hash2 = 52711) => {
     if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; i++) {

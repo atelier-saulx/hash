@@ -1,5 +1,5 @@
-import hashObject from './hashObject';
-import stringHash from './stringHash';
+import hashObject from './hashObject.js';
+import stringHash from './stringHash.js';
 // no murmur (and no buffers) for browser
 const hash = (val, size) => {
     let result;

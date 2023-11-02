@@ -1,4 +1,4 @@
-import stringHash from './stringHash';
+import stringHash from './stringHash.js';
 const hashObjectIgnoreKeyOrderNest = (obj, hash = 5381, hash2 = 52711) => {
     if (Array.isArray(obj)) {
         const fl = '__len:' + obj.length + 1;
