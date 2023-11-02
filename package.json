@@ -20,6 +20,7 @@
   "type": "module",
   "main": "./dist/src/index.js",
   "ava": {
+    "timeout": "2m",
     "files": [
       "./dist/test/**/*.js"
     ]

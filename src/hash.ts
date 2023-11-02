@@ -12,7 +12,7 @@ const hash = (val: any, size?: number): number => {
     }
   } else {
     if (typeof val === 'boolean') {
-      result = (stringHash(val ? ':true' : ':false') >>> 0) * 4096
+      result = val ? 792222265344 : 4821552340992
     } else if (typeof val === 'number') {
       result =
         (stringHash('n:' + val) >>> 0) * 4096 +
