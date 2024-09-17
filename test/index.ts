@@ -1303,3 +1303,22 @@ test('hash ingore key order test collision', async (t) => {
 
   t.is(negative.size, 0)
 })
+
+test.only('hash object', async (t) => {
+  const a = hashObjectIgnoreKeyOrder({
+    'foo:bar': 'baz',
+    fu: 200,
+    luv: 'null',
+    bo: true,
+  })
+  const b = hashObjectIgnoreKeyOrder({
+    foo: 'bar:baz',
+    fun: '200',
+    lu: null,
+    bob: 'true',
+  })
+
+  console.log('.........', a === b)
+
+  t.pass()
+})
